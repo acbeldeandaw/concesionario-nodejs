@@ -1,84 +1,78 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
+<html lang="en">
 
 <head>
-    <title>TODO supply a title</title>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="js/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="js/alertifyjs/css/themes/default.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
 </head>
 
 <body>
-    <div>TODO write content</div>
-    <button id="btnProductos">Cargar Productos</button>
-    <button id="btnProducto">Carga Producto</button>
-
-
-    <button id="btnBorraProducto">Borra Producto</button>
-    <button type="button" class="btn btn-primary" id="abreParaInsertar">
-    Nuevo Producto
-  </button>
-    <input type="number" id="idProducto" value="1">
-    <div id="formulario">
-
-
-    </div>
-    <table id="tablaProductos" class="table">
-
-    </table>
-    <div id="divProductos"></div>
-
-    <!---*************** VENTANA MODAL ***************-->
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p>ID:<input type="text" name="id" id="id"></p>
-                    <p>Nombre:<input type="text" name="nombre" id="nombre"></p>
-                    <p>Categoria:<input type="text" name="categoria" id="categoria"></p>
-                    <p>Precio:<input type="text" name="precio" id="precio"></p>
-                    <p>Imagen:<input type="text" name="imagen" id="imagen"></p>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button id="btnInsertaProducto">Inserta Producto</button>
-                    <button id="btnActualizaProducto" class="btn btn-primary" data-dismiss="modal">Actualiza Producto</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <div class="fadeIn first">
+                <h2>Login</h2>
+            </div>
+            <input type="email" id="email" class="fadeIn second" name="email" placeholder="email">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <button id="btnLogin" class="fadeIn fourth">Login</button>
+            <div id="formFooter">
+                <script src="https://accounts.google.com/gsi/client" async defer></script>
+                <div id="g_id_onload" data-client_id="786295692445-gsfaaml4gfvcbfm0o4bpm15lr7n9ne19.apps.googleusercontent.com" data-auto_prompt="false" data-callback="handleCredentialResponse"></div>
+                <div class="g_id_signin fadeIn fourth" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">button</div>
+                <button id="deslogearse-google" class="fadeIn fourth">Deslogearse de Google</button>
             </div>
         </div>
     </div>
-    <!--- *************** FIN DE VENTANA MODAL **************-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
-        document.getElementById("btnProductos").addEventListener('click', cargaProductos);
-        document.getElementById("btnProducto").addEventListener('click', cargaProducto);
-        document.getElementById("btnActualizaProducto").addEventListener('click', actualizaProducto);
-        document.getElementById("btnInsertaProducto").addEventListener('click', insertaProducto);
-        document.getElementById("btnBorraProducto").addEventListener('click', borraProducto);
-        document.getElementById("abreParaInsertar").addEventListener('click', abreParaInsertar);
+        let btnLogin = document.getElementById('btnLogin');
+        btnLogin.addEventListener('click', hacerLogin);
+        btnGoogle = document.getElementById("deslogearse-google");
 
-        let btnInsertaProducto = document.getElementById("btnInsertaProducto");
-        let btnActualizaProducto = document.getElementById("btnActualizaProducto");
+        btnGoogle.onclick = () => {
+            google.accounts.id.disableAutoSelect();
+            google.accounts.id.revoke(localStorage.getItem('email'));
+            localStorage.clear();
+            location.reload();
+        }
+
+        function hacerLogin() {
+            const ruta = getAbsolutePath() + 'login'
+            fetch(ruta, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        correo: document.getElementById('email').value,
+                        password: document.getElementById('password').value
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Datos incorrectos');
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then((json) => {
+                    localStorage.setItem('token', json.token);
+                    window.location.href = getAbsolutePath() + "productos.html";
+                })
+                .catch(error => {
+                    alert(error);
+                })
+        }
 
         function getAbsolutePath() {
             var loc = window.location;
@@ -86,142 +80,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
         }
 
-
-        function cargaProductos() {
-            alert(getAbsolutePath());
-            let tabla = document.getElementById("tablaProductos");
-            fetch(getAbsolutePath() + 'webresources/generic/productos/')
-                .then(response => response.json())
-                .then(json => {
-                    console.log(json);
-                    //bucle para eliminar todas las filas de la tabla
-                    while (tabla.firstChild) {
-                        tabla.removeChild(tabla.firstChild);
-                    }
-                    //recorre todos los productos del array de productos
-                    for (i = 0; i <= json.length; i++) {
-                        //document.getElementById("divProductos").innerHTML+=json[i].nombre;
-                        let fila = document.createElement("tr");
-                        let celdaId = document.createElement("td");
-                        celdaId.textContent = json[i].id;
-                        let celdaNombre = document.createElement("td");
-                        celdaNombre.textContent = json[i].nombre;
-                        let celdaPrecio = document.createElement("td");
-                        celdaPrecio.textContent = json[i].precio;
-
-                        let celdaCategoria = document.createElement("td");
-                        celdaCategoria.textContent = json[i].categoria;
-                        /*** CELDA BORRAR ****/
-                        let celdaBorrar = document.createElement("td");
-                        let btnBorrar = document.createElement("button");
-                        btnBorrar.setAttribute("onclick", "borraProductoPorId(" +
-                            json[i].id + ")");
-                        btnBorrar.textContent = "Borrar";
-                        celdaBorrar.appendChild(btnBorrar);
-                        /*** CELDA ACTUALIZAR ****/
-                        let celdaActualizar = document.createElement("td");
-                        let btnActualizar = document.createElement("button");
-                        btnActualizar.setAttribute("onclick", "cargaProductoPorId(" +
-                            json[i].id + ")");
-                        btnActualizar.textContent = "Actualizar";
-                        celdaActualizar.appendChild(btnActualizar);
-
-                        fila.appendChild(celdaId);
-                        fila.appendChild(celdaNombre);
-                        fila.appendChild(celdaPrecio);
-                        fila.appendChild(celdaCategoria);
-                        fila.appendChild(celdaBorrar);
-                        fila.appendChild(celdaActualizar);
-
-
-                        tabla.appendChild(fila);
-
-                    } //fin de for
-
+        function handleCredentialResponse(response) {
+            // decodeJwtResponse() is a custom function defined by you
+            // to decode the credential response.
+            //const responsePayload = decodeJwtResponse(response.credential);
+            console.log(response.credential);
+            const body = {
+                'id_token': response.credential
+            }
+            fetch("http://localhost:90/google", {
+                    method: "POST",
+                    body: JSON.stringify(body),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                    },
                 })
-        }
-
-        function cargaProducto() {
-            let idProducto = document.getElementById("idProducto").value;
-            cargaProductoPorId(idProducto);
-        }
-
-        function cargaProductoPorId(idProducto) {
-            $('#myModal').modal('show');
-
-            btnInsertaProducto.style.display = "none";
-            btnActualizaProducto.style.display = "inline";
-            fetch(getAbsolutePath() + 'webresources/generic/producto/' + idProducto)
-                .then(response => response.json())
-                .then(json => {
+                .then((response) => response.json())
+                .then((json) => {
                     console.log(json);
-                    document.getElementById("formulario").style.display = "block";
-                    document.getElementById("id").value = json.id;
-                    document.getElementById("nombre").value = json.nombre;
-                    document.getElementById("categoria").value = json.categoria;
-                    document.getElementById("precio").value = json.precio;
-                    document.getElementById("imagen").value = json.imagen;
+                    localStorage.setItem('email', json.miusuario.correo)
                 });
-        }
-
-        function abreParaInsertar() {
-            $('#myModal').modal('show');
-
-            btnInsertaProducto.style.display = "inline";
-            btnActualizaProducto.style.display = "none";
-        }
-
-        function actualizaProducto() {
-            fetch(getAbsolutePath() + 'webresources/generic/producto/', {
-                    method: 'PUT',
-                    body: JSON.stringify({
-                        id: document.getElementById("id").value,
-                        nombre: document.getElementById("nombre").value,
-                        categoria: document.getElementById("categoria").value,
-                        precio: document.getElementById("precio").value,
-                        imagen: document.getElementById("imagen").value
-                    }),
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8',
-                    },
-                })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
-
-        }
-
-        function insertaProducto() {
-            fetch(getAbsolutePath() + 'webresources/generic/producto/', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        nombre: document.getElementById("nombre").value,
-                        categoria: document.getElementById("categoria").value,
-                        precio: document.getElementById("precio").value,
-                        imagen: document.getElementById("imagen").value
-                    }),
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8',
-                    },
-                })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
-
-        }
-
-        function borraProducto() {
-            let idProducto = document.getElementById("idProducto").value;
-            borraProductoPorId(idProducto);
-            cargaProductos();
-        }
-
-        function borraProductoPorId(idProducto) {
-            fetch(getAbsolutePath() + 'webresources/generic/producto/' + idProducto, {
-                method: 'DELETE',
-            });
-            cargaProductos();
         }
     </script>
 </body>
 
 </html>
-© 2022 GitHub, Inc. Terms Priva

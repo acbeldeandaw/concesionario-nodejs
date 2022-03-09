@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Concesionario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        .buttons {
+            width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        
+        .buttons div {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .buttons input {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .buttons button {
+            width: 160px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Button trigger modal -->
+    <div class="buttons border border-dark shadow">
+        <div>
+            <input type="text" class="form-control" id="idCargar" placeholder="ID">
+            <button id="btnCargar" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update">Cargar Automóvil</button>
+        </div>
+        <div>
+            <button id="btnAutomoviles" class="btn btn-primary">Cargar Automóviles</button>
+            <button id="btnOpenInsert" type="button" class="btn btn-primary" data-toggle="modal" data-target="#insert">Insertar Automóvil</button>
+        </div>
+    </div>
+
+    <!-- Modal insert -->
+    <div class="modal fade" id="insert" tabindex="-1" role="dialog" aria-labelledby="insertLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertLabel">Insertar automóvil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="marcaInsert">Marca:</label>
+                            <input type="text" class="form-control" id="marcaInsert" aria-describedby="nombreInsert">
+                        </div>
+                        <div class="form-group">
+                            <label for="modeloInsert">Modelo:</label>
+                            <input type="text" class="form-control" id="modeloInsert" aria-describedby="categoriaInsert">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoriaInsert">Categoría:</label>
+                            <input type="text" class="form-control" id="categoriaInsert" aria-describedby="precioInsert">
+                        </div>
+                        <div class="form-group">
+                            <label for="fabInsert">Año:</label>
+                            <input type="number" class="form-control" id="fabInsert" aria-describedby="fotoInsert">
+                        </div>
+                        <div class="form-group">
+                            <label for="fotoInsert">Foto:</label>
+                            <input type="text" class="form-control" id="fotoInsert" aria-describedby="fotoInsert">
+                        </div>
+                        <div class="form-group">
+                            <label for="precioInsert">Precio:</label>
+                            <input type="number" class="form-control" id="precioInsert" aria-describedby="fotoInsert">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnInsert" type="button" class="btn btn-primary" data-dismiss="modal">Insertar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal update -->
+    <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateLabel">Actualizar automóvil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="idUpdate">
+                        <div class="form-group">
+                            <label for="marcaInsert">Marca:</label>
+                            <input type="text" class="form-control" id="marcaUpdate" aria-describedby="marcaUpdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="modeloInsert">Modelo:</label>
+                            <input type="text" class="form-control" id="modeloUpdate" aria-describedby="modeloUpdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoriaInsert">Categoría:</label>
+                            <input type="text" class="form-control" id="categoriaUpdate" aria-describedby="categoriaUpdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="fabInsert">Año:</label>
+                            <input type="number" class="form-control" id="fabUpdate" aria-describedby="fabUpdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="fotoInsert">Foto:</label>
+                            <input type="text" class="form-control" id="fotoUpdate" aria-describedby="fotoUpdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="precioInsert">Precio:</label>
+                            <input type="number" class="form-control" id="precioUpdate" aria-describedby="precioUpdate">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnUpdate" type="button" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="tabla" class="table justify-content-center text-center"></table>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (token == null) {
+            window.location.href = getAbsolutePath();
+        }
+        document.getElementById("btnAutomoviles").addEventListener('click', cargarAutomoviles);
+        document.getElementById("btnCargar").addEventListener('click', cargarAutomovil);
+        document.getElementById("btnOpenInsert").addEventListener('click', clearInsert);
+        document.getElementById("btnInsert").addEventListener('click', insertAutomovil);
+        document.getElementById("btnUpdate").addEventListener('click', updateAutomovil);
+
+        function getAbsolutePath() {
+            var loc = window.location;
+            var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+            return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+        }
+
+        function clearInsert() {
+            document.getElementById("marcaInsert").value = "";
+            document.getElementById("modeloInsert").value = "";
+            document.getElementById("categoriaInsert").value = "";
+            document.getElementById("fabInsert").value = "";
+            document.getElementById("fotoInsert").value = "";
+            document.getElementById("precioInsert").value = "";
+        }
+
+        function cargarAutomovil() {
+            let id = document.getElementById("idCargar").value;
+            fetch(getAbsolutePath() + 'webresources/generic/automovil/' + id, {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'x-token': token
+                    },
+                })
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);
+                    document.getElementById("idUpdate").value = id;
+                    document.getElementById("marcaUpdate").value = json.marca;
+                    document.getElementById("modeloUpdate").value = json.modelo;
+                    document.getElementById("categoriaUpdate").value = json.categoria;
+                    document.getElementById("fabUpdate").value = json.fab;
+                    document.getElementById("fotoUpdate").value = json.foto;
+                    document.getElementById("precioUpdate").value = json.precio;
+                })
+        }
+
+        function cargarAutomoviles() {
+            let tabla = document.getElementById("tabla");
+            fetch(getAbsolutePath() + 'webresources/generic/automoviles/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'x-token': token
+                    },
+                })
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);
+
+                    while (tabla.firstChild) {
+                        tabla.removeChild(tabla.firstChild);
+                    }
+
+                    // Cols
+                    let fila = document.createElement("tr");
+                    let celdaId = document.createElement("th");
+                    celdaId.textContent = "ID";
+                    let celdaMarca = document.createElement("th");
+                    celdaMarca.textContent = "MARCA";
+                    let celdaModelo = document.createElement("th");
+                    celdaModelo.textContent = "MODELO";
+                    let celdaCategoria = document.createElement("th");
+                    celdaCategoria.textContent = "CATEGORÍA";
+                    let celdaFab = document.createElement("th");
+                    celdaFab.textContent = "AÑO";
+                    let celdaFoto = document.createElement("th");
+                    celdaFoto.textContent = "FOTO";
+                    let celdaPrecio = document.createElement("th");
+                    celdaPrecio.textContent = "PRECIO";
+                    let celdaOpciones = document.createElement("th");
+                    celdaOpciones.textContent = "OPCIONES";
+                    fila.appendChild(celdaId);
+                    fila.appendChild(celdaMarca);
+                    fila.appendChild(celdaModelo);
+                    fila.appendChild(celdaCategoria);
+                    fila.appendChild(celdaFab);
+                    fila.appendChild(celdaFoto);
+                    fila.appendChild(celdaPrecio);
+                    fila.appendChild(celdaOpciones);
+                    tabla.appendChild(fila);
+
+                    // Rows
+                    for (i = 0; i <= json.length; i++) {
+                        let fila = document.createElement("tr");
+                        let celdaId = document.createElement("td");
+                        celdaId.textContent = json[i].id;
+                        let celdaMarca = document.createElement("td");
+                        celdaMarca.textContent = json[i].marca;
+                        let celdaModelo = document.createElement("td");
+                        celdaModelo.textContent = json[i].modelo;
+                        let celdaCategoria = document.createElement("td");
+                        celdaCategoria.textContent = json[i].categoria;
+                        let celdaFab = document.createElement("td");
+                        celdaFab.textContent = json[i].fab;
+                        let celdaFoto = document.createElement("td");
+                        celdaFoto.textContent = json[i].foto;
+                        let celdaPrecio = document.createElement("td");
+                        celdaPrecio.textContent = json[i].precio + " €";
+                        let btnUpdate = document.createElement("button");
+                        btnUpdate.textContent = "Actualizar";
+                        btnUpdate.className = "btn-primary";
+                        btnUpdate.setAttribute("data-toggle", "modal");
+                        btnUpdate.setAttribute("data-target", "#update");
+                        btnUpdate.setAttribute("onclick", "openUpdate('" + json[i].id + "')");
+                        let btnDelete = document.createElement("button");
+                        btnDelete.textContent = "Borrar";
+                        btnDelete.className = "btn-danger";
+                        btnDelete.setAttribute("onclick", "return deleteAutomovil('" + json[i].id + "')");
+                        let celdaOpciones = document.createElement("td");
+                        celdaOpciones.appendChild(btnUpdate);
+                        celdaOpciones.appendChild(btnDelete);
+                        fila.appendChild(celdaId);
+                        fila.appendChild(celdaMarca);
+                        fila.appendChild(celdaModelo);
+                        fila.appendChild(celdaCategoria);
+                        fila.appendChild(celdaFab);
+                        fila.appendChild(celdaFoto);
+                        fila.appendChild(celdaPrecio);
+                        fila.appendChild(celdaOpciones);
+                        tabla.appendChild(fila);
+                    }
+                })
+        }
+
+        function insertAutomovil() {
+            fetch(getAbsolutePath() + 'webresources/generic/automovil/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'x-token': token
+                    },
+                    body: JSON.stringify({
+                        marca: document.getElementById("marcaInsert").value,
+                        modelo: document.getElementById("modeloInsert").value,
+                        categoria: document.getElementById("categoriaInsert").value,
+                        fab: document.getElementById("fabInsert").value,
+                        foto: document.getElementById("fotoInsert").value,
+                        precio: document.getElementById("precioInsert").value
+                    })
+                })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+            cargarAutomoviles();
+        }
+
+        function deleteAutomovil(id) {
+            if (confirm("¿Está seguro/a de que quiere eliminar el automóvil?")) {
+                fetch(getAbsolutePath() + 'webresources/generic/automovil/' + id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'x-token': token
+                    }
+                });
+                cargarAutomoviles();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function openUpdate(id) {
+            fetch(getAbsolutePath() + 'webresources/generic/automovil/' + id, {
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'x-token': token
+                    }
+                })
+                .then(response => response.json())
+                .then(json => {
+                    document.getElementById("idUpdate").value = id;
+                    document.getElementById("marcaUpdate").value = json.marca;
+                    document.getElementById("modeloUpdate").value = json.modelo;
+                    document.getElementById("categoriaUpdate").value = json.categoria;
+                    document.getElementById("fabUpdate").value = json.fab;
+                    document.getElementById("fotoUpdate").value = json.foto;
+                    document.getElementById("precioUpdate").value = json.precio;
+                })
+        }
+
+        function updateAutomovil() {
+            let id = document.getElementById("idUpdate").value;
+            fetch(getAbsolutePath() + 'webresources/generic/automovil/' + id, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'x-token': token
+                    },
+                    body: JSON.stringify({
+                        marca: document.getElementById("marcaUpdate").value,
+                        modelo: document.getElementById("modeloUpdate").value,
+                        categoria: document.getElementById("categoriaUpdate").value,
+                        fab: document.getElementById("fabUpdate").value,
+                        foto: document.getElementById("fotoUpdate").value,
+                        precio: document.getElementById("precioUpdate").value
+                    })
+                })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+            cargarAutomoviles();
+        }
+    </script>
+</body>
+
+</html>
