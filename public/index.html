@@ -8,10 +8,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="js/alertifyjs/css/alertify.min.css" />
-    <link rel="stylesheet" href="js/alertifyjs/css/themes/default.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
@@ -70,7 +71,7 @@
                     window.location.href = getAbsolutePath() + "productos.html";
                 })
                 .catch(error => {
-                    alert(error);
+                    alertify.error('' + error);
                 })
         }
 
@@ -98,7 +99,8 @@
                 .then((response) => response.json())
                 .then((json) => {
                     console.log(json);
-                    localStorage.setItem('email', json.miusuario.correo)
+                    localStorage.setItem('email', json.miusuario.correo);
+                    alertify.success("Login correcto");
                 });
         }
     </script>

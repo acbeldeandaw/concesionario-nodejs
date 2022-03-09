@@ -69,8 +69,7 @@ class Server {
                         }
                         res.status(200).json({
                             msg: 'Archivo subido con éxito',
-                            uploadPath
-
+                            nombreTemporal
                         })
                     })
 
