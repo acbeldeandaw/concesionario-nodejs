@@ -42,7 +42,7 @@
 
         btnGoogle.onclick = () => {
             google.accounts.id.disableAutoSelect();
-            google.accounts.id.revoke(localStorage.getItem('email'));
+            google.accounts.id.revoke(localStorage.getItem('token'));
             localStorage.clear();
             location.reload();
         }
