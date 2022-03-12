@@ -99,8 +99,9 @@
                 .then((response) => response.json())
                 .then((json) => {
                     console.log(json);
-                    localStorage.setItem('email', json.miusuario.correo);
+                    localStorage.setItem('token', json.token);
                     alertify.success("Login correcto");
+                    window.location.href = getAbsolutePath() + "productos.html";
                 });
         }
     </script>
